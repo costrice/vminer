@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="description"
+          content="Versatile Multi-view Inverse Rendering with Near- and Far-field Light Sources">
+    <meta name="keywords"
+          content="Inverse rendering, 3D reconstruction, VMINer">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>VMINer: Versatile Multi-view Inverse Rendering
+        with Near- and Far-field Light Sources</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+    <link rel="icon" href="./static/images/favicon.jpg">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+    <script type="text/javascript" src="./static/js/LaTeXMathML.js"></script>
+    <link rel="stylesheet" type="text/css"
+          href="./static/js/LaTeXMathML.standardarticle.css"/>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a role="button" class="navbar-burger" aria-label="menu"
+           aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+    <div class="navbar-menu">
+        <div class="navbar-start"
+             style="flex-grow: 1; justify-content: center;">
+            <a class="navbar-item" href="https://costrice.github.io/">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+            </a>
+
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                    More Research
+                </a>
+                <div class="navbar-dropdown">
+                    <a class="navbar-item"
+                       href="https://costrice.github.io/split/">
+                        SPLiT
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</nav>
+
+
+<section class="hero">
+    <div class="hero-body">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered">
+                <div class="column has-text-centered">
+                    <h1 class="title is-3 publication-title">VMINer: Versatile
+                        Multi-view Inverse Rendering with Near- and Far-field
+                        Light Sources</h1>
+                    <h1 class="title is-4 publication-conference"> CVPR 2024
+                        Highlight </h1>
+                    <div class="is-size-6 publication-authors">
+            <span class="author-block">
+              <a href="https://costrice.github.io/">Fan Fei</a><sup>1,3</sup>,
+            </span>
+                        <span class="author-block">
+              <a href="https://me.jeffreet.com/">Jiajun Tang</a><sup>1,3</sup>,
+            </span>
+                        <span class="author-block">
+              <a href="https://facultyprofiles.hkust.edu.hk/profiles.php?profile=ping-tan-pingtan#researchinterest">Ping Tan</a><sup>2,3</sup>,
+            </span>
+                        <span class="author-block">
+              <a href="https://camera.pku.edu.cn/">Boxin Shi</a><sup>1*</sup>
+            </span>
+                    </div>
+
+                    <div class="is-size-5 publication-authors">
+                        <span class="author-block"><sup>1</sup>Peking University</span>
+                        <span class="author-block"><sup>2</sup>The Hong Kong University of Science and Technology</span>
+                        <span class="author-block"><sup>3</sup>Light Illusions</span>
+                        <span class="author-block"><sup>*</sup>Corresponding author</span>
+                    </div>
+
+                    <div class="column has-text-centered">
+                        <div class="publication-links">
+                            <!-- PDF Link. -->
+                            <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper (coming soon)</span>
+                </a>
+              </span>
+                            <!-- Code Link. -->
+                            <span class="link-block">
+                <a href="https://github.com/costrice/vminer"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (coming soon)</span>
+                  </a>
+              </span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="hero teaser">
+    <div class="container is-max-desktop">
+        <div class="hero-body">
+            <div style="text-align: center;">
+                <img id="teaser" src="./static/images/teaser.png"
+                     style="width: 50%; height: auto;">
+                </img>
+            </div>
+            <h2 class="subtitle has-text-centered">
+                <span class="dnerf">Given multi-view images under possibly varied lighting,
+                    VMINer leverages all present lighting conditions to reconstruct
+                    scene geometry and material disentangled with lighting. The
+                    trained fields are extracted to textured meshes for seamless integration
+                    into industrial renderers for various applications.
+            </h2>
+        </div>
+    </div>
+</section>
+
+
+<section class="section">
+    <div class="container is-max-desktop">
+        <!-- Abstract. -->
+        <div class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+                <h2 class="title is-4">Abstract</h2>
+                <div class="content has-text-justified">
+                    <p>
+                        This paper introduces a versatile multi-view inverse
+                        rendering framework with near- and far-field light
+                        sources.
+                    </p>
+                    <p>
+                        Tackling the fundamental challenge of inherent ambiguity
+                        in inverse rendering, our framework adopts a lightweight
+                        yet inclusive lighting model for different near- and
+                        far-field lights, thus is able to make use of input
+                        images under varied lighting conditions available during
+                        capture. It leverages observations under each lighting
+                        to disentangle the intrinsic geometry and material from
+                        the external lighting, using both neural radiance field
+                        rendering and physically-based surface rendering on the
+                        3D implicit fields. After training, the reconstructed
+                        scene is extracted to a textured triangle mesh for
+                        seamless integration into industrial rendering software
+                        for various applications.
+                    </p>
+                    <p>
+                        Quantitatively and qualitatively tested on synthetic and
+                        real-world scenes, our method shows superiority to
+                        state-of-the-art multi-view inverse rendering methods in
+                        both speed and quality.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!--/ Abstract. -->
+
+        <!-- Pipeline. -->
+        <div class="columns is-centered has-text-centered">
+            <div class="column is-full-width">
+                <h2 class="title is-4">Pipeline</h2>
+                <img src='./static/images/pipeline.png'></img>
+                <div class="content has-text-justified">
+                    <p>
+                        The pipeline of VMINer.
+                        \textbf{Bottom-left}: VMINer takes as input multi-view
+                        RGB images with foreground masks under possibly varied
+                        far- and near-field lighting.
+                        The total number of lighting conditions and their types
+                        should be given.
+                        Each image is illuminated by one far-field lighting
+                        whose index is ``far index'', and near-field lights
+                        whose on/off states are ``near on/off''.
+                        \textbf{Top-left}: VMINer models each far-field lighting
+                        (${\rm far}_i$) and near-field lighting (${\rm near}_i$)
+                        separately as parametric models, from which incoming
+                        radiance is queried at any position $\V{x}$ and
+                        direction $\bm{\omega}$.
+                        \textbf{Bottom-mid}: It utilizes 3D implicit
+                        representations for scene geometry, material, and
+                        radiance.
+                        Four MLPs process $\V{x}$ and view direction $\V{v}$
+                        encoded by different encoders $\operatorname{enc}_{\rm
+                        \{ geo, mat, dir\}}$ with light embeddings $\V{F}_{{\rm
+                        \{far, near\}}_i}$ to get the SDF $s$, the neural
+                        appearance descriptor $\V{z}$, the BRDF parameters
+                        $\bm{\beta}$, and the radiance $\V{c}_{{ \{\rm
+                        far,near\}}_i}$ under each lighting.
+                        \textbf{Bottom-right}: It then uses radiance field
+                        rendering to re-render the appearance $\V{C}_{\rm rf,
+                        {\rm \{near, far \}}_i}$ separately under each lighting
+                        condition, added up to $\V{C}_{\rm rf}$ according to the
+                        per-image lighting condition.
+                        \textbf{Top-right}: Physically-based surface rendering
+                        uses Monte Carlo integration to evaluate both direct
+                        illumination $L_{\rm d\{near, far\}_i}$ with secondary
+                        visibility and indirect illumination $L_{\rm ind\{near,
+                        far\}_i}$.
+                        The rendered appearances are aggregated to $\V{C}_{\rm
+                        pb}$.
+                        $\V{C}_{\rm \{rf, pb \}}$ are compared with the
+                        observation $\V{C}_{\rm gt}$ to train the scene model.
+                        $\V{C}_{\rm rf, {\rm \{near, far \}}_i}$ are also used
+                        as additional supervision signals for $\V{C}_{\rm pb,
+                        {\rm \{near, far \}}_i}$.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!--/ Pipeline. -->
+
+        <!-- Video Link. -->
+        <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=ry4frf6mIeA"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+        <!--/ Video Link. -->
+
+<!--        &lt;!&ndash; Comparisons. &ndash;&gt;-->
+<!--        <div class="columns is-centered has-text-centered">-->
+<!--            <div class="column is-full-width">-->
+<!--                <h2 class="title is-4">Comparisons</h2>-->
+<!--                <img src='./static/images/comparison.png'></img>-->
+<!--                <div class="content has-text-justified">-->
+<!--                    <p>-->
+<!--                        We compare SPLiT on lighting estimation against-->
+<!--                        state-of-the-art methods.-->
+<!--                        Lighting estimates from left to right:-->
+<!--                        (a) ground truth, (b) SPLiT (ours), (c) SPLiT (ours) w/o-->
+<!--                        $f_\mathrm{amb}$,-->
+<!--                        (d) <a-->
+<!--                            href="https://augmentedperception.github.io/facelight/">LIDP</a>,-->
+<!--                        (e) <a-->
+<!--                            href="https://openaccess.thecvf.com/content_ECCV_2018/papers/Renjiao_Yi_Faces_as_Lighting_ECCV_2018_paper.pdf">FaceProbe</a>,-->
+<!--                        (f) <a-->
+<!--                            href="https://ieeexplore.ieee.org/document/9320328">HDRLE</a>,-->
+<!--                        (g) <a-->
+<!--                            href="https://ieeexplore.ieee.org/document/9431726">HyFRIS</a>.-->
+<!--                        Some entries (indicated as “$\ominus$”) are unavailable.-->
+<!--                    </p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        &lt;!&ndash;/ Comparisons. &ndash;&gt;-->
+
+    </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+        <h2 class="title">BibTeX</h2>
+        <pre><code>@inproceedings{VMINer24,
+            author       = {Fan Fei and
+                            Jiajun Tang and
+                            Ping Tan and
+                            Boxin Shi},
+            title        = {{VMINer}: Versatile Multi-view Inverse Rendering with Near- and Far-field Light Sources},
+            booktitle    = {{IEEE/CVF} Conference on Computer Vision and Pattern Recognition,
+                            {CVPR} 2024, Seattle, WA, USA, June 17-22, 2024},
+            pages        = {1--11},
+            publisher    = {{IEEE}},
+            year         = {2023},
+        }
+        </code></pre>
+    </div>
+</section>
+
+
+<footer class="footer">
+    <div class="container">
+        <div class="columns is-centered">
+            <div class="column is-8">
+                <div class="content">
+                    <p>
+                        This website is licensed under a <a rel="license"
+                                                            href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+                        Commons Attribution-ShareAlike 4.0 International
+                        License</a>.
+                    </p>
+                    <p>
+                        The <a
+                            href="https://github.com/costrice/split/tree/main/docs">source
+                        code</a> of this website
+                        is borrowed from
+                        <a href="https://github.com/nerfies/nerfies.github.io">nerfies</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
