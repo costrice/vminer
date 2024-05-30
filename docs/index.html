@@ -147,7 +147,7 @@
         <div class="hero-body">
             <div style="text-align: center;">
                 <img id="teaser" src="./static/images/teaser.png"
-                     style="width: 100%; height: auto;">
+                     style="width: 80%; height: auto;">
                 </img>
             </div>
             <h2 class="subtitle has-text-centered">
@@ -219,46 +219,51 @@
                 <div class="content has-text-justified">
                     <p>
                         The pipeline of VMINer.
-                        \textbf{Bottom-left}: VMINer takes as input multi-view
+
+                        <b>Bottom-left</b>: VMINer takes as input multi-view
                         RGB images with foreground masks under possibly varied
                         far- and near-field lighting.
                         The total number of lighting conditions and their types
                         should be given.
                         Each image is illuminated by one far-field lighting
-                        whose index is ``far index'', and near-field lights
-                        whose on/off states are ``near on/off''.
-                        \textbf{Top-left}: VMINer models each far-field lighting
-                        (${\rm far}_i$) and near-field lighting (${\rm near}_i$)
+                        whose index is "far index", and near-field lights
+                        whose on/off states are "near on/off".
+
+                        <b>Top-left</b>: VMINer models each far-field lighting
+                        ($\mathrm{far}_i$) and near-field lighting ($\mathrm{near}_i$)
                         separately as parametric models, from which incoming
-                        radiance is queried at any position $\V{x}$ and
-                        direction $\bm{\omega}$.
-                        \textbf{Bottom-mid}: It utilizes 3D implicit
+                        radiance is queried at any position $\mathbf{x}$ and
+                        direction $\boldsymbol{\omega}$.
+
+                        <b>Bottom-mid</b>: It utilizes 3D implicit
                         representations for scene geometry, material, and
                         radiance.
-                        Four MLPs process $\V{x}$ and view direction $\V{v}$
+                        Four MLPs process $\mathbf{x}$ and view direction $\mathbf{v}$
                         encoded by different encoders $\operatorname{enc}_{\rm
-                        \{ geo, mat, dir\}}$ with light embeddings $\V{F}_{{\rm
+                        \{ geo, mat, dir\}}$ with light embeddings $\mathbf{F}_{{\rm
                         \{far, near\}}_i}$ to get the SDF $s$, the neural
-                        appearance descriptor $\V{z}$, the BRDF parameters
-                        $\bm{\beta}$, and the radiance $\V{c}_{{ \{\rm
+                        appearance descriptor $\mathbf{z}$, the BRDF parameters
+                        $\boldsymbol{\beta}$, and the radiance $\mathbf{c}_{{ \{\rm
                         far,near\}}_i}$ under each lighting.
-                        \textbf{Bottom-right}: It then uses radiance field
-                        rendering to re-render the appearance $\V{C}_{\rm rf,
-                        {\rm \{near, far \}}_i}$ separately under each lighting
-                        condition, added up to $\V{C}_{\rm rf}$ according to the
+
+                        <b>Bottom-right</b>: It then uses radiance field
+                        rendering to re-render the appearance $\mathbf{C}_\mathrm{rf,
+                        \mathrm{\{near, far \}}_i}$ separately under each lighting
+                        condition, added up to $\mathbf{C}_\mathrm{rf}$ according to the
                         per-image lighting condition.
-                        \textbf{Top-right}: Physically-based surface rendering
+
+                        <b>Top-right</b>: Physically-based surface rendering
                         uses Monte Carlo integration to evaluate both direct
-                        illumination $L_{\rm d\{near, far\}_i}$ with secondary
-                        visibility and indirect illumination $L_{\rm ind\{near,
+                        illumination $L_\mathrm{d\{near, far\}_i}$ with secondary
+                        visibility and indirect illumination $L_\mathrm{ind\{near,
                         far\}_i}$.
-                        The rendered appearances are aggregated to $\V{C}_{\rm
+                        The rendered appearances are aggregated to $\mathbf{C}_{\rm
                         pb}$.
-                        $\V{C}_{\rm \{rf, pb \}}$ are compared with the
-                        observation $\V{C}_{\rm gt}$ to train the scene model.
-                        $\V{C}_{\rm rf, {\rm \{near, far \}}_i}$ are also used
-                        as additional supervision signals for $\V{C}_{\rm pb,
-                        {\rm \{near, far \}}_i}$.
+                        $\mathbf{C}_\mathrm{\{rf, pb \}}$ are compared with the
+                        observation $\mathbf{C}_\mathrm{gt}$ to train the scene model.
+                        $\mathbf{C}_\mathrm{rf, \mathrm{\{near, far \}}_i}$ are also used
+                        as additional supervision signals for $\mathbf{C}_\mathrm{pb,
+                        \mathrm{\{near, far \}}_i}$.
                     </p>
                 </div>
             </div>
