@@ -122,6 +122,17 @@
                   <span>Code (coming soon)</span>
                   </a>
               </span>
+                            <!-- Video Link. -->
+                            <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=ry4frf6mIeA"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+                            <!--/ Video Link. -->
                         </div>
 
                     </div>
@@ -136,15 +147,13 @@
         <div class="hero-body">
             <div style="text-align: center;">
                 <img id="teaser" src="./static/images/teaser.png"
-                     style="width: 50%; height: auto;">
+                     style="width: 100%; height: auto;">
                 </img>
             </div>
             <h2 class="subtitle has-text-centered">
-                <span class="dnerf">Given multi-view images under possibly varied lighting,
-                    VMINer leverages all present lighting conditions to reconstruct
-                    scene geometry and material disentangled with lighting. The
-                    trained fields are extracted to textured meshes for seamless integration
-                    into industrial renderers for various applications.
+                <span class="dnerf">VMINer</span> leverages all present lighting
+                conditions in input images to reconstruct
+                scene geometry and material disentangled with lighting.
             </h2>
         </div>
     </div>
@@ -189,17 +198,18 @@
         </div>
         <!--/ Abstract. -->
 
-        <!-- Video Link. -->
-        <span class="link-block">
-                <a href="https://www.youtube.com/watch?v=ry4frf6mIeA"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-youtube"></i>
-                  </span>
-                  <span>Video</span>
-                </a>
-              </span>
-        <!--/ Video Link. -->
+        <!-- Paper video. -->
+        <div class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+                <h2 class="title is-3">Video</h2>
+                <div class="publication-video">
+                    <iframe src="https://www.youtube.com/embed/ry4frf6mIeA?si=raSKGqGN4He-ZMcp"
+                            frameborder="0" allow="autoplay; encrypted-media"
+                            allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+        <!--/ Paper video. -->
 
         <!-- Pipeline. -->
         <div class="columns is-centered has-text-centered">
@@ -255,32 +265,32 @@
         </div>
         <!--/ Pipeline. -->
 
-<!--        &lt;!&ndash; Comparisons. &ndash;&gt;-->
-<!--        <div class="columns is-centered has-text-centered">-->
-<!--            <div class="column is-full-width">-->
-<!--                <h2 class="title is-4">Comparisons</h2>-->
-<!--                <img src='./static/images/comparison.png'></img>-->
-<!--                <div class="content has-text-justified">-->
-<!--                    <p>-->
-<!--                        We compare SPLiT on lighting estimation against-->
-<!--                        state-of-the-art methods.-->
-<!--                        Lighting estimates from left to right:-->
-<!--                        (a) ground truth, (b) SPLiT (ours), (c) SPLiT (ours) w/o-->
-<!--                        $f_\mathrm{amb}$,-->
-<!--                        (d) <a-->
-<!--                            href="https://augmentedperception.github.io/facelight/">LIDP</a>,-->
-<!--                        (e) <a-->
-<!--                            href="https://openaccess.thecvf.com/content_ECCV_2018/papers/Renjiao_Yi_Faces_as_Lighting_ECCV_2018_paper.pdf">FaceProbe</a>,-->
-<!--                        (f) <a-->
-<!--                            href="https://ieeexplore.ieee.org/document/9320328">HDRLE</a>,-->
-<!--                        (g) <a-->
-<!--                            href="https://ieeexplore.ieee.org/document/9431726">HyFRIS</a>.-->
-<!--                        Some entries (indicated as “$\ominus$”) are unavailable.-->
-<!--                    </p>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        &lt;!&ndash;/ Comparisons. &ndash;&gt;-->
+        <!--        &lt;!&ndash; Comparisons. &ndash;&gt;-->
+        <!--        <div class="columns is-centered has-text-centered">-->
+        <!--            <div class="column is-full-width">-->
+        <!--                <h2 class="title is-4">Comparisons</h2>-->
+        <!--                <img src='./static/images/comparison.png'></img>-->
+        <!--                <div class="content has-text-justified">-->
+        <!--                    <p>-->
+        <!--                        We compare SPLiT on lighting estimation against-->
+        <!--                        state-of-the-art methods.-->
+        <!--                        Lighting estimates from left to right:-->
+        <!--                        (a) ground truth, (b) SPLiT (ours), (c) SPLiT (ours) w/o-->
+        <!--                        $f_\mathrm{amb}$,-->
+        <!--                        (d) <a-->
+        <!--                            href="https://augmentedperception.github.io/facelight/">LIDP</a>,-->
+        <!--                        (e) <a-->
+        <!--                            href="https://openaccess.thecvf.com/content_ECCV_2018/papers/Renjiao_Yi_Faces_as_Lighting_ECCV_2018_paper.pdf">FaceProbe</a>,-->
+        <!--                        (f) <a-->
+        <!--                            href="https://ieeexplore.ieee.org/document/9320328">HDRLE</a>,-->
+        <!--                        (g) <a-->
+        <!--                            href="https://ieeexplore.ieee.org/document/9431726">HyFRIS</a>.-->
+        <!--                        Some entries (indicated as “$\ominus$”) are unavailable.-->
+        <!--                    </p>-->
+        <!--                </div>-->
+        <!--            </div>-->
+        <!--        </div>-->
+        <!--        &lt;!&ndash;/ Comparisons. &ndash;&gt;-->
 
     </div>
 </section>
