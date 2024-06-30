@@ -1,0 +1,29 @@
+---
+# path options
+exp_name: hotdog
+add_timestamp: true
+seed: 114
+out_dir: ./log/testing
+ckpt: ./log/workspace/hotdog_F*N*_***/checkpoints/ckpt_final.pth
+data_root: F:\Datasets
+reconstruct: false
+test_before_train: true
+test_novel_view: true
+novel_view_test_data_dir: hotdog/hotdog_F1N1/test
+test_novel_light: true
+novel_light_test_data_dir: hotdog_test/test
+export_mesh: true
+
+# rendering options
+scene_aabb: [ -2, -2, -0.5, 2, 2, 0.5 ]
+
+# export mesh options
+mesh_grid_reso: 512
+simplify_mesh: true
+simplify_mesh_target_num_faces: 131072
+mesh_bake_texture: true
+mesh_texture_reso: 4096
+
+# misc options
+use_amp: false
+log_to_wandb: false

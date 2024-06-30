@@ -1,0 +1,104 @@
+---
+# path options
+exp_name: trooper_F2N0
+add_timestamp: true
+seed: 42
+out_dir: ./log/workspace
+reconstruct: true
+data_root: /path/to/data/root
+train_data_dir: trooper\trooper_F2N0\train
+test_novel_view: true
+novel_view_test_data_dir: trooper\trooper_F2N0\test
+test_novel_light: false
+#novel_light_test_data_dir: hotdog_test\test
+export_mesh: true
+test_before_train: false
+test_after_train: true
+
+# training schedule
+prolong_multi: 1
+n_iters: 40000
+lr_warmup_iters: 1000
+update_grad_every: 1
+white_bg: true
+filter_ray_at: [ 5000 ]
+enable_pbr_after: 30000
+enable_sec_vis_for_pbr_after: 30000
+enable_indirect_after: 30000
+detach_secondary: true
+eval_under_novel_light_after: -1
+anneal_end_iter: 10000
+fix_shape_and_radiance_in_pbr: true
+
+# logging options
+save_ckpt_every: 2000
+n_visual_train: 10
+eval_every: 1999
+n_visual_test: 20
+
+# tensor volume options
+field_type: InstantNSR
+n_geo_feature_dims: 13
+n_light_code_dims: 16
+hash_grid_n_levels: 16
+hash_grid_coarsest_reso: 16
+hash_grid_finest_reso: 2048
+brdf_type: GGX
+sphere_init_radius: 0.5
+
+# light options
+n_sg_lobes: 128
+envmap_hw: [ 32, 64 ]
+
+# batch size options
+batch_size_train: 4096
+chunk_size_nr_train: 65536
+chunk_size_nr_test: 1048576
+chunk_size_pbr_train: 4096
+chunk_size_pbr_test: 32768
+
+# learning rate options
+lr_light: 0.02
+lr_geometry_init: 1e-2
+lr_variance_init: 1e-4  # use the same decay ratio as geometry
+lr_geometry_final: 1e-3
+lr_material_init: 3e-2
+lr_material_final: 1e-3
+
+# loss weight options (nr_rgb = 1.0)
+pbr_rgb_weight: 1.0
+silhouette_weight: 0.1
+eikonal_weight: 3e-3
+normal_smoothness_weight: 3e-3
+light_intensity_l1_weight: 1e-5
+light_white_balance_weight: 1e-3
+self_consistency_weight: 0.1
+material_smoothness_weight: 1e-3
+jitter_range: 0.05
+
+# rendering options
+use_occ_grid: true
+ray_march_weight_thres: 1e-3
+alpha_mask_thres: 1e-3
+scene_aabb: [ -1, -1, -1.5, 1, 1, 2 ]
+aabb_margin_ratio: 0.05
+primary_near_far: [ 1.0, 10.0 ]
+n_samples_per_ray: 1024
+incident_sampling_method: importance
+n_sec_sample_dirs_train: 20
+n_sec_sample_dirs_test: 40
+second_near_far: [ 0.05, 7.0 ]
+max_second_ray_segments: 64
+secondary_as_surface: true
+use_prefiltered_envmap_for_diffuse: false
+
+# export mesh options
+mesh_grid_reso: 512
+simplify_mesh: true
+simplify_mesh_target_num_faces: 131072
+mesh_bake_texture: true
+mesh_texture_reso: 4096
+
+# misc options
+use_amp: false
+log_to_wandb: false

@@ -1,0 +1,13 @@
+configargparse
+numpy
+tensorboardx
+tqdm
+opencv-python
+python-dateutil
+pillow
+nerfacc
+lpips
+scipy
+xatlas
+trimesh
+PyMCubes
