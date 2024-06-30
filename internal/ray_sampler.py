@@ -640,13 +640,6 @@ class RaySampler(object):
         ).clamp(min=1e-8)
         alpha = alpha.view(self.n_pts, 1, h * w)
         
-        # utils.write_image(
-        #     r'E:\Codes\NearLight\img_workspace\cos_theta.png',
-        #     cos_theta.view(h, w, 1).cpu().numpy())
-        # utils.write_image(
-        #     r'E:\Codes\NearLight\img_workspace\normal_dir_dot.png',
-        #     normal_dir_dot[0].view(h, w, 1).cpu().numpy())
-        
         # sample a pixel index for each point
         k = sample_interval(alpha, n_dirs)
         

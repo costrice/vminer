@@ -4,7 +4,6 @@ exp_name: trooper_F1N1
 add_timestamp: true
 seed: 42
 out_dir: ./log/workspace
-ckpt: "E:\Codes\NearLight\log\workspace\trooper_F1N1-2023Nov13Mon-214037\checkpoints\ckpt_latest_38000.pth"
 reconstruct: true
 data_root: /path/to/data/root
 train_data_dir: trooper\trooper_F1N1\train
@@ -13,7 +12,7 @@ novel_view_test_data_dir: trooper\trooper_F1N1\test
 test_novel_light: false
 #novel_light_test_data_dir: hotdog_test\test
 export_mesh: true
-test_before_train: true
+test_before_train: false
 test_after_train: true
 
 # training schedule
