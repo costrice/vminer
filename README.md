@@ -135,6 +135,7 @@ You can also refer to `options.py` to see all the available options.
 
 ## Changelog
 
+- 2024/06/30: Release some scripts we used when writing the paper in `scripts/`. Currently, they are poorly documented and can not work out of the box. You can use them as references and see how the numbers in the paper are generated.
 - 2024/06/30: Initial release
 
 ## Citation
