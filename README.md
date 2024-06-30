@@ -63,43 +63,56 @@ The data should be organized as follows:
     ...
 ```
 
-The `light_metadata_*.json` files contain the overall lighting information, and is in the following format:
+The light_metadata_*.jsonfiles contain the overall lighting information, and is in the following format:
 
 ```json
 {
     "far_lights": {
-        "amount": <int>, // number of far-field lights
+        "amount": 1,
         "name": [
-            <str>, ...  // names of the lighting
-        ],
-    },
-    "near_lights": {
-        "amount": <int>,  // number of near-field lights
-        "pos_type": [  // types of near-field light positions
-            "collocated",  // collocated with the camera
-            "fixed",  // fixed position
-            ...
+            "light1"
         ]
     },
+    "near_lights": {
+        "amount": 2,
+        "pos_type": [  
+            "collocated",  
+            "fixed"
+        ]
+    }
 }
 ```
+Explanation:
+
+- `far_lights`: This object contains information about the far-field lights.
+    - `amount`: An integer that represents the number of far-field lights.
+    - `name`: An array of strings where each string is the name of a far-field light.
+
+- `near_lights`: This object contains information about the near-field lights.
+    - `amount`: An integer that represents the number of near-field lights.
+    - `pos_type`: An array of strings where each string represents the type of a near-field light position. The possible values are "collocated" (collocated with the camera) and "fixed" (fixed position).
 
 The `metadata.json` of each image contains camera pose and per-image lighting condition,
 and is in the following format:
 
 ```json
 {
-    "cam_angle_x": <float>,  // horizontal field of view in radians
-    "cam_transformation_matrix":
-        // 4x4 camera extrinsic matrix from camera space  (opencv coordinate)
-        // to world space
-        ...,
-    "imh": <int>,  // image height
-    "imw": <int>,  // image width
-    "far_light": <str>, // name of the far-field light that illuminates this image
-    "near_light_status": [0, 1, 0, ...],  // on/off status of near-field lights
+  "cam_angle_x": 0.6911112070083618,
+  "cam_transformation_matrix": [],
+  "imh": 800,
+  "imw": 800,
+  "far_light": "light1",
+  "near_light_status": [1, 0]
 }
 ```
+Explanation:
+- `cam_angle_x`: A float that represents the horizontal field of view in radians. 
+- `cam_transformation_matrix`: A 4x4 matrix that represents the camera extrinsic matrix from camera space (in OpenCV coordinate) to world space. It is almost identical to the camera pose matrix in [NeRF format](https://github.com/bmild/nerf) except that the camera coordinate is in OpenCV coordinate rather than OpenGL coordinate, thus the 2nd and 3rd columns are flipped.
+- `imh`: Image height in pixels.  
+- `imw`: Image width in pixels.
+- `far_light`: A string that represents the name of the far-field light that illuminates this image. The name should match one of the names specified in the `far_lights` section of the `light_metadata_*.json` file.
+- `near_light_status`: An array of integers where each integer represents the on/off (1/0) status of a near-field light. The order of the statuses should match the order of the `pos_type` array in the near_lights section of the
+  `light_metadata_*.json` file.
 
 </details>
 
