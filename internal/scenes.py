@@ -558,7 +558,7 @@ class SceneModel(nn.Module):
             retd = self.field.query_sdf(pts_xyz, with_grad=True)
             sdf = retd['sdf']
             sdf_grad = retd['sdf_grad']
-            sdf_grad = F.normalize(sdf_grad, p=2, dim=-1, eps=1e-8)
+            sdf_grad = F.normalize(sdf_grad, p=2, dim=-1, eps=1e-6)
             return self.field.get_alpha(
                 sdf,
                 normal=sdf_grad,
@@ -618,7 +618,7 @@ class SceneModel(nn.Module):
             self.near_lights_nr.current_cam_pos = flash_o
         sdf = pts_attrs['sdf']
         sdf_grad = pts_attrs['sdf_grad']
-        normal = F.normalize(sdf_grad, p=2, dim=-1, eps=1e-8)
+        normal = F.normalize(sdf_grad, p=2, dim=-1, eps=1e-6)
         alpha = self.field.get_alpha(
             sdf,
             normal=normal,
@@ -642,12 +642,12 @@ class SceneModel(nn.Module):
             weights, sampled_t_mid,
             ray_indices=ray_indices, n_rays=n_rays
         )
-        ray_depth /= ray_opacity.clamp(min=1e-8)
+        ray_depth /= ray_opacity.clamp(min=1e-6)
         ray_normal = nerfacc.accumulate_along_rays(
             weights, normal,
             ray_indices=ray_indices, n_rays=n_rays
         )
-        ray_normal = F.normalize(ray_normal, p=2, dim=-1, eps=1e-8)
+        ray_normal = F.normalize(ray_normal, p=2, dim=-1, eps=1e-6)
         attrs = {
             'opacity': ray_opacity,
             'depth': ray_depth,
@@ -848,7 +848,7 @@ class SceneModel(nn.Module):
                 self.near_lights_nr.current_cam_pos = flash_o
             sdf = pts_attrs['sdf']
             sdf_grad = pts_attrs['sdf_grad']
-            normal = F.normalize(sdf_grad, p=2, dim=-1, eps=1e-8)
+            normal = F.normalize(sdf_grad, p=2, dim=-1, eps=1e-6)
             alpha = self.field.get_alpha(
                 sdf,
                 normal=normal,
@@ -911,8 +911,8 @@ class SceneModel(nn.Module):
             total_samples += ray_indices.shape[0]
         
         # collect and post-processing
-        ray_depth = ray_depth / ray_opacity.clamp(min=1e-8)
-        ray_normal = F.normalize(ray_normal, p=2, dim=-1, eps=1e-8)
+        ray_depth = ray_depth / ray_opacity.clamp(min=1e-6)
+        ray_normal = F.normalize(ray_normal, p=2, dim=-1, eps=1e-6)
         ray_attrs = {
             'depth': ray_depth,
             'opacity': ray_opacity,
@@ -1061,7 +1061,7 @@ class SceneModel(nn.Module):
                     else:  # light_color_balance
                         mean_overall_intensity = intensity.mean()
                         intensity = intensity / mean_overall_intensity.clamp(
-                            min=1e-8
+                            min=1e-6
                         )
                         color_balance_diff = intensity - 1
                         components.append(color_balance_diff)

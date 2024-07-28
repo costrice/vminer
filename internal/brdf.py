@@ -124,7 +124,7 @@ class BaseBRDF(nn.Module):
         #             ((F.softsign(normal_view_dot * 100) + 1) / 2
         #              ).view(n_rays, 1, 1))
         # (n_rays, n_dirs)
-        cos_mask = (cos_term > 1e-8).view(n_rays, n_dirs)
+        cos_mask = (cos_term > 1e-6).view(n_rays, n_dirs)
         
         # compute BRDF using the surface normal, the view direction, the light
         # direction, and BRDF parameters

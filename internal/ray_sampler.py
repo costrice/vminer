@@ -207,7 +207,7 @@ class PdfPixelLight(PdfCalc):
         
         # unpack pixel lights
         # (n_pts, n_lights, 3)
-        light_dir = F.normalize(pixel_lights[..., :3], p=2, dim=-1, eps=1e-8)
+        light_dir = F.normalize(pixel_lights[..., :3], p=2, dim=-1, eps=1e-6)
         intensity = pixel_lights[..., 3:6]
         light_coord = geo_utils.view_vec2image_coord(light_dir)
         
@@ -222,7 +222,7 @@ class PdfPixelLight(PdfCalc):
         weight = energy * normal_dir_dot * cos_theta
         alpha = weight / torch.sum(
             weight, dim=-2, keepdim=True
-        ).clamp(min=1e-8)
+        ).clamp(min=1e-6)
         alpha = alpha.view(n_pts, 1, h * w)
         
         # convert direction to pixel coordinates
@@ -518,10 +518,10 @@ class RaySampler(object):
         ) * sharp_mask + 1 * (1 - sharp_mask)
         # offset = 0  # TODO: remove this
         weight = (energy *
-                  (normal_lobe_dots + offset).clamp(min=1e-8, max=1))
+                  (normal_lobe_dots + offset).clamp(min=1e-6, max=1))
         alpha = weight / torch.sum(
             weight, dim=-2, keepdim=True
-        ).clamp(min=1e-8)
+        ).clamp(min=1e-6)
         alpha = alpha.view(self.n_pts, 1, n_lobes)
         
         # sample a lobe index for each point
@@ -620,7 +620,7 @@ class RaySampler(object):
         
         # unpack pixel lights
         # [1, h * w, 3]
-        light_dir = F.normalize(pixel_lights[..., :3], p=2, dim=-1, eps=1e-8)
+        light_dir = F.normalize(pixel_lights[..., :3], p=2, dim=-1, eps=1e-6)
         intensity = pixel_lights[..., 3:6]
         light_coord = geo_utils.view_vec2image_coord(light_dir)
         
@@ -637,7 +637,7 @@ class RaySampler(object):
         weight = energy * normal_dir_dot * cos_theta
         alpha = weight / torch.sum(
             weight, dim=-2, keepdim=True
-        ).clamp(min=1e-8)
+        ).clamp(min=1e-6)
         alpha = alpha.view(self.n_pts, 1, h * w)
         
         # sample a pixel index for each point
@@ -718,7 +718,7 @@ class RaySampler(object):
         # reflect view direction
         v = view_dirs.view(self.n_pts, 1, 3)
         wi = 2 * torch.sum(h * v, dim=-1, keepdim=True) * h - v
-        wi = F.normalize(wi, p=2, dim=-1, eps=1e-8)
+        wi = F.normalize(wi, p=2, dim=-1, eps=1e-6)
         
         # calculate pdf
         pdf_fn = PdfGGXBRDF()

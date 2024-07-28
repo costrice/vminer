@@ -174,7 +174,7 @@ def export_mesh(
             )
             # normalize normal
             pts_attrs_chunk["normal"] = F.normalize(
-                pts_attrs_chunk["sdf_grad"], dim=-1, p=2, eps=1e-8
+                pts_attrs_chunk["sdf_grad"], dim=-1, p=2, eps=1e-6
             )
             materials["normal"][pixel_chunk] = pts_attrs_chunk["normal"]
             # unpack material

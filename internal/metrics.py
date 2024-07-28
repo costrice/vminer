@@ -5,7 +5,7 @@ import lpips
 import torch
 import torch.nn.functional as F
 
-eps = 1e-8
+eps = 1e-6
 
 
 class BaseMetricCalculator:

@@ -525,7 +525,7 @@ def physically_based_render(
                         )
                 wi_sampled['light'] = {
                     'wi': wi_light,
-                    'pdf': pdf_light.clamp(min=1e-8),
+                    'pdf': pdf_light.clamp(min=1e-6),
                     'pdf_fn': pdf_fn_light,
                     'n_dirs': n_light_dirs,
                 }
@@ -541,7 +541,7 @@ def physically_based_render(
                     ))
                 wi_sampled['brdf'] = {
                     'wi': wi_brdf,
-                    'pdf': pdf_brdf.clamp(min=1e-8),
+                    'pdf': pdf_brdf.clamp(min=1e-6),
                     'pdf_fn': pdf_fn_brdf,
                     'n_dirs': n_brdf_dirs,
                 }
@@ -553,7 +553,7 @@ def physically_based_render(
                 wi_cos, pdf_cos, pdf_fn_cos = sampler.cosine_sample(n_cos_dirs)
                 wi_sampled['cos'] = {
                     'wi': wi_cos,
-                    'pdf': pdf_cos.clamp(min=1e-8),
+                    'pdf': pdf_cos.clamp(min=1e-6),
                     'pdf_fn': pdf_fn_cos,
                     'n_dirs': n_cos_dirs,
                 }

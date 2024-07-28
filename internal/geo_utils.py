@@ -11,7 +11,7 @@ import torch
 import torch.nn.functional as F
 import torch.utils.data
 
-eps = 1e-8
+eps = 1e-6
 
 
 def coordinate_system(

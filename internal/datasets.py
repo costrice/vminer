@@ -590,7 +590,7 @@ class VMINerDataset(Dataset):
                 normal = self.read_and_resize_image(normal_path)
                 normal = normal * 2 - 1
                 normal = normal[:, :3] * alpha
-                normal = F.normalize(normal, p=2, dim=-1, eps=1e-8)
+                normal = F.normalize(normal, p=2, dim=-1, eps=1e-6)
             else:
                 normal = None
             

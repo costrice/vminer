@@ -302,7 +302,7 @@ def visualize_depth_numpy(
     else:
         mi, ma = min_max
     
-    x = (x - mi) / (ma - mi + 1e-8)  # normalize to 0~1
+    x = (x - mi) / (ma - mi + 1e-6)  # normalize to 0~1
     
     if mask is not None:
         x[~mask] = 1.0
@@ -332,7 +332,7 @@ def visualize_depth(depth, minmax=None, cmap=cv2.COLORMAP_JET):
     else:
         mi, ma = minmax
     
-    x = (x - mi) / (ma - mi + 1e-8)  # normalize to 0~1
+    x = (x - mi) / (ma - mi + 1e-6)  # normalize to 0~1
     x = (255 * x).astype(np.uint8)
     x_ = Image.fromarray(cv2.applyColorMap(x, cmap))
     x_ = T.ToTensor()(x_)  # (3, H, W)

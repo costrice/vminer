@@ -659,7 +659,7 @@ class NearLight(Lighting):
         ).view(-1)
     
     def get_actual_params(self, index: int = None):
-        """Get near light positions. Intensity is leaved to subclasses.
+        """Get near light positions. Intensity is left to subclasses.
 
         Args:
             index: the index of the light source to get. If None, return
@@ -723,7 +723,7 @@ class NearLight(Lighting):
         wi = light_xyz - pts_xyz.view(n_pts, 1, 3)
         dist = torch.norm(wi, dim=-1, keepdim=True)
         dist = torch.clamp(dist, min=1e-2)  # avoid inf irradiance
-        wi = F.normalize(wi, dim=-1, p=2, eps=1e-8)
+        wi = F.normalize(wi, dim=-1, p=2, eps=1e-6)
         # leave intensity to subclasses
         return wi, dist, None
 
@@ -812,7 +812,7 @@ class SHNearLight(NearLight):
         """
         light_xyz, _ = super().get_actual_params(index=index)
         sh_coeff = self.params[..., 3:].view(self.n_lights, 3, -1)
-        sh_coeff = torch.exp(sh_coeff.clamp(max=13))  # e^13 = 4.4e5
+        sh_coeff = torch.exp(sh_coeff.clamp(max=10))  # e^10 = 22026
         if index is not None:
             sh_coeff = sh_coeff[index]
         return light_xyz, sh_coeff

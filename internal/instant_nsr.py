@@ -699,7 +699,7 @@ class NeuSField(nn.Module):
                         create_graph=True,
                         retain_graph=True
                     )[0]
-                    normal = F.normalize(sdf_grad, dim=-1, p=2, eps=1e-8)
+                    normal = F.normalize(sdf_grad, dim=-1, p=2, eps=1e-6)
                 
                 if return_jittered:
                     xyz_geo_encoding_jitter = self.geo_encoding(
@@ -721,7 +721,7 @@ class NeuSField(nn.Module):
                     )[0]
                     normal_jitter = F.normalize(
                         sdf_grad_jitter,
-                        dim=-1, p=2, eps=1e-8
+                        dim=-1, p=2, eps=1e-6
                     )
             
             if return_sdf:
@@ -746,7 +746,7 @@ class NeuSField(nn.Module):
                     #         (view_dirs_out * normal_de).sum(-1, keepdims=True)
                     #         - view_dirs_out)
                     # refl_view_dirs_out = F.normalize(
-                    #     refl_view_dirs_out, dim=-1, p=2, eps=1e-8)
+                    #     refl_view_dirs_out, dim=-1, p=2, eps=1e-6)
                     
                     # the input of dir_encoding must in [0, 1]
                     encoded_view_dirs = self.dir_encoding(
@@ -786,7 +786,7 @@ class NeuSField(nn.Module):
                     #         (view_dirs_out * normal).sum(-1, keepdims=True)
                     #         - view_dirs_out)
                     # view_dirs_out = F.normalize(
-                    #     view_dirs_out, dim=-1, p=2, eps=1e-8)
+                    #     view_dirs_out, dim=-1, p=2, eps=1e-6)
                     
                     # the input of dir_encoding must in [0, 1]
                     encoded_view_dirs = self.dir_encoding(
