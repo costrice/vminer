@@ -11,3 +11,4 @@ scipy
 xatlas
 trimesh
 PyMCubes
+open3d
