@@ -8,9 +8,9 @@ Official implementation and project page of the CVPR'24 highlight paper
 <p align="center">
   <img src="docs/static/images/teaser.png" width="80%" align="center">
 
-⚠️ 2024/08/06: Current code has some problem that will cause the training to fail due to
-`RuntimeError: CUDA error: invalid configuration argument` when running on Linux.
-We are working on fixing this issue. If you have any idea, please let us know.
+⚠️ 2024/08/06: Current code has some problem that will cause the training to fail after thousands of iterations due to
+`RuntimeError: CUDA error: invalid configuration argument` when running on Linux (including the Docker image).
+We are working on fixing this issue and will release a fixed version soon.
 
 ## Setup
 
@@ -38,7 +38,6 @@ We provide a built Docker image for running the code. You can pull the image fro
 ```bash
 docker pull costrice/vminer:1.5
 ```
-Note that if you are using windows with NVIDIA GPU, you may need to install the [NVIDIA Container Toolkit](https://docs.nvidia.com/ai-enterprise/deployment-guide-vmware/0.1.0/docker.html) to run the docker image with GPU support.
 
 ## Preparing Data
 
