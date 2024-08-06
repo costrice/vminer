@@ -166,3 +166,4 @@ cython_debug/
 # logging files
 /log/*
 /runs/*
+/model/

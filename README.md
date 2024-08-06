@@ -8,8 +8,13 @@ Official implementation and project page of the CVPR'24 highlight paper
 <p align="center">
   <img src="docs/static/images/teaser.png" width="80%" align="center">
 
+⚠️ 2024/08/06: Current code has some problem that will cause the training to fail due to
+`RuntimeError: CUDA error: invalid configuration argument` when running on Linux.
+We are working on fixing this issue. If you have any idea, please let us know.
+
 ## Setup
 
+### Using Conda
 ```bash
 # Create a new conda environment
 conda create -n vminer python=3.9
@@ -27,6 +32,13 @@ pip install -r requirements.txt
 ```
 
 Tested on Windows 11 with one NVIDIA GeForce RTX 3090 (24GB) and CUDA 11.8.
+
+### Using Docker Image
+We provide a built Docker image for running the code. You can pull the image from Docker Hub by running:
+```bash
+docker pull costrice/vminer:1.5
+```
+Note that if you are using windows with NVIDIA GPU, you may need to install the [NVIDIA Container Toolkit](https://docs.nvidia.com/ai-enterprise/deployment-guide-vmware/0.1.0/docker.html) to run the docker image with GPU support.
 
 ## Preparing Data
 
@@ -119,22 +131,58 @@ Explanation:
 ## Running the Code
 
 Here we show how to run our code on one synthetic scene.
-After downloading our synthetic data (for example, `hotdog/hotdog_F1N1`) to `/some/path`, you can run the following command to optimize the scene:
+First, downloading our synthetic data (for example, `hotdog/hotdog_F1N1`) to `/path/to/data/root`.
+Then run the command in subsequent sections in either Conda or Docker environment to optimize the scene.
 
+We give some template configuration files in `configs/` folder.
+For example, you can replace `/path/to/config/file.yaml`
+with `configs/train/hotdog/hotdog_F1N1.yaml`.
+
+### Using Conda
+In conda environment, you can run the following command to optimize the scene:
 ```bash
-python main.py --config configs/train/hotdog/hotdog_F1N1.yaml --data_root /some/path
+python main.py \ 
+  --config /path/to/config/file.yaml \
+  --data_root /path/to/data/root \
+  --scene_aabb $X1 $Y1 $Z1 $X2 $Y2 $Z2  # if you are using custom data
 ```
 
-The visualization and the extracted textured mesh will be saved in `/log/workspace/*` by default.
+### Using Docker Image
+Using Docker, you can run the image using the downloaded data with the following command:
+```bash
+docker run \
+  --entrypoint python \
+  --gpus device=0 \
+  -v /path/to/data/root:/app/data/:ro \
+  -v /path/to/config/file.yaml:/app/config.yaml:ro \
+  -v ./log:/app/log/ \
+  costrice/vminer:1.5 \
+  main.py \
+  --config config.yaml \
+  --out_dir /app/log/workspace/ \
+  --data_root /app/data/ \
+  --scene_aabb $X1 $Y1 $Z1 $X2 $Y2 $Z2  # if you are using custom data
+```
 
-If you want to render a reconstructed scene or extract meshes from a reconstructed scene checkpoint, an exemplar yaml is shown in `configs/hotdog_test.yaml`.
+### Notes
 
-To run on your own data, please create a config file similar to `configs/train/*.yaml` then run the code with the config file.
+The visualization and the extracted textured mesh will be saved
+in `/log/workspace/$EXP_NAME-$TIMESTAMP` by default.
 
-You can also refer to `options.py` to see all the available options.
+If you want to render a reconstructed scene or extract meshes from a
+reconstructed scene checkpoint, an exemplar yaml is shown
+in `configs/hotdog_test.yaml` (for running on Conda).
+
+To run on your own data and configuration, you can either ([configargparse](https://github.com/bw2/ConfigArgParse) made this possible):
+- create a config file similar
+to `configs/train/*.yaml` then run the code with the config file using `--config /path/to/your/config.yaml`,
+- or just pass the data root and other parameters directly to the command line using `--data_root`, `--scene_aabb`, etc.
+
+Refer to `options.py` for all the available options.
 
 ## Changelog
 
+- 2024/08/06: Release the docker image to run the code
 - 2024/06/30: Release some scripts we used when writing the paper in `scripts/`. Currently, they are poorly documented and can not work out of the box. You can use them as references and see how the numbers in the paper are generated.
 - 2024/06/30: Initial release
 
